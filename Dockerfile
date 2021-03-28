@@ -13,4 +13,4 @@ cd displaycameras-master && \
 chmod +x install.sh && \
 sudo ./install.sh skip
 
-ENTRYPOINT displaycameras start && /bin/bash
+ENTRYPOINT displaycameras stop ; displaycameras start ; /bin/bash
