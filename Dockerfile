@@ -6,11 +6,16 @@ RUN apt-get install unzip
 
 RUN apt-get install libraspberrypi0 -y
 
-RUN cd home && \
-wget https://github.com/Jugganourt/displaycameras/archive/refs/heads/master.zip && \
-unzip master.zip && \
-cd displaycameras-master && \
-chmod +x install.sh && \
-sudo ./install.sh skip
+WORKDIR /home
+
+RUN wget https://github.com/Jugganourt/displaycameras/archive/refs/heads/master.zip
+
+RUN unzip master.zip
+
+WORKDIR /home/displaycameras-master
+
+RUN chmod +x install.sh
+
+RUN sudo ./install.sh -r N -g ""
 
 ENTRYPOINT displaycameras stop ; displaycameras start ; /bin/bash
